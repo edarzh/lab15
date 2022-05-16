@@ -1,7 +1,7 @@
 package org.suai.lab15.controller;
 
 import org.suai.lab15.repository.BulletinBoardRepository;
-import org.suai.lab15.repository.UsersRepository;
+import org.suai.lab15.repository.UserRepository;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,42 +16,43 @@ import java.util.Map;
 
 @WebServlet(name = "bulletinBoardServlet", value = "/bulletin-board/*")
 public class BulletinBoardController extends HttpServlet {
+	private static final String MAIN_PAGE_URI = "/lab15_war_exploded/bulletin-board/main-page";
 	private static final String LOGIN_URI = "/lab15_war_exploded/bulletin-board/login";
 	private static final String LOGOUT_URI = "/lab15_war_exploded/bulletin-board/logout";
 	private static final String ADD_BULLETIN_URI = "/lab15_war_exploded/bulletin-board/add-bulletin";
-	private static final String MAIN_PAGE_URI = "/lab15_war_exploded/bulletin-board/main-page";
 
-	private final BulletinBoardRepository bulletinBoardRepository = new BulletinBoardRepository();
-	private final UsersRepository usersRepository = new UsersRepository();
+	private final BulletinBoardRepository bulletinBoard = new BulletinBoardRepository();
+	private final UserRepository users = new UserRepository();
 
 	@Override
 	public void init() {
-		usersRepository.add("Alice", "123");
-		usersRepository.add("Bob", "123");
+		users.add("Alice", "123");
+		users.add("Bob", "123");
 	}
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String uri = req.getRequestURI();
+		HttpSession session = req.getSession();
+		String name = (String) session.getAttribute("name");
+		boolean loggedIn = name != null;
 
 		switch (uri) {
 			case LOGOUT_URI -> {
-				HttpSession session = req.getSession();
 				session.invalidate();
 				req.getRequestDispatcher("/logout.jsp").forward(req, resp);
 			}
 			case ADD_BULLETIN_URI -> {
-				HttpSession session = req.getSession();
-				String name = (String) session.getAttribute("name");
-
-				if (name != null) {
-					bulletinBoardRepository.add(name, ZonedDateTime.now().toString());
-					getMainPage(req, resp);
+				if (loggedIn) {
+					bulletinBoard.add(name, ZonedDateTime.now().toString());
+					serveMainPage(req, resp, true);
 				} else {
 					req.getRequestDispatcher("/access-denied.jsp").forward(req, resp);
 				}
 			}
-			case MAIN_PAGE_URI -> getMainPage(req, resp);
+			case MAIN_PAGE_URI -> serveMainPage(req, resp, loggedIn);
+
+			default -> req.getRequestDispatcher("/not-found.jsp").forward(req, resp);
 		}
 	}
 
@@ -68,21 +69,25 @@ public class BulletinBoardController extends HttpServlet {
 					throw new IllegalArgumentException();
 				}
 
-				if (usersRepository.verify(name, password)) {
+				if (users.verify(name, password)) {
 					HttpSession session = req.getSession();
 					session.setAttribute("name", name);
 
-					getMainPage(req, resp);
+					serveMainPage(req, resp, true);
 				} else {
 					req.getRequestDispatcher("/login.jsp").forward(req, resp);
 				}
 			}
+			default -> req.getRequestDispatcher("/not-found.jsp").forward(req, resp);
 		}
 	}
 
-	private void getMainPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<Map.Entry<String, String>> bulletinBoard = bulletinBoardRepository.get();
+	private void serveMainPage(HttpServletRequest req,
+			HttpServletResponse resp,
+			boolean loggedIn) throws ServletException, IOException {
+		List<Map.Entry<String, String>> bulletinBoard = this.bulletinBoard.get();
 		req.setAttribute("bulletinBoard", bulletinBoard);
+		req.setAttribute("loggedIn", loggedIn);
 		req.getRequestDispatcher("/index.jsp").forward(req, resp);
 	}
 

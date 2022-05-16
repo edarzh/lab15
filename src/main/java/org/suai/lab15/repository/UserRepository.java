@@ -3,7 +3,7 @@ package org.suai.lab15.repository;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class UsersRepository {
+public class UserRepository {
 	private final Map<String, String> users = new ConcurrentHashMap<>();
 
 	public void add(String name, String password) {
