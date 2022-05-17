@@ -1,0 +1,22 @@
+.bulletin {
+    align-content: center;
+    background-color: antiquewhite;
+    border: 2px solid darksalmon;
+    padding: 5px;
+}
+
+.bulletin-out {
+    padding: 3px;
+}
+
+.bulletin-header {
+    color: darkred;
+    font-size: small;
+}
+
+.bulletin-body {
+}
+
+.link {
+    font-family: Arial, serif;
+}

@@ -3,19 +3,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style.css">
 	<title>Bulletin Board</title>
 </head>
 <body>
 <h1>Bulletin Board</h1>
-<a href="${pageContext.request.contextPath}/login.jsp">Login</a>
+<a class="link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
 <c:if test="${loggedIn}">
-	| <a href="/lab15_war_exploded/bulletin-board/logout">Logout</a> |
-	<a href="/lab15_war_exploded/bulletin-board/add-bulletin">Add Bulletin</a>
+	| <a class="link" href="/lab15_war_exploded/bulletin-board/logout">Logout</a> |
+	<a class="link" href="/lab15_war_exploded/bulletin-board/add-bulletin">Add Bulletin</a>
 </c:if>
-<ul>
-	<c:forEach var="entry" items="${requestScope.bulletinBoard}">
-		<li class="text">${entry.key}: ${entry.value}</li>
-	</c:forEach>
-</ul>
+<c:forEach var="entry" items="${requestScope.bulletinBoard}">
+	<div class="bulletin-out">
+		<div class="bulletin">
+			<p class="bulletin-header">${entry.key}</p>
+			<p class="bulletin-body">${entry.value}</p>
+		</div>
+	</div>
+</c:forEach>
 </body>
 </html>
