@@ -68,7 +68,6 @@ public class BulletinBoardController extends HttpServlet {
 				}
 			}
 			case MAIN_PAGE_URI -> serveMainPage(req, resp, loggedIn);
-//			case MAIN_PAGE_URI -> test(req, resp);
 
 			default -> req.getRequestDispatcher("/not-found.jsp").forward(req, resp);
 		}
