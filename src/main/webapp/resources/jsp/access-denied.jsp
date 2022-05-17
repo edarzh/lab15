@@ -5,6 +5,6 @@
 </head>
 <body>
 <h1>Access denied</h1>
-<a href="/lab15_war_exploded/bulletin-board/main-page">Main page</a>
+<a class="link" href="/lab15_war_exploded/bulletin-board/main-page">Main page</a>
 </body>
 </html>

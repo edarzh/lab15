@@ -15,6 +15,6 @@
 	<input type="submit" value="login">
 </form>
 <br/>
-<a href="/lab15_war_exploded/bulletin-board/main-page">Main page</a>
+<a class="link" href="/lab15_war_exploded/bulletin-board/main-page">Main page</a>
 </body>
 </html>
