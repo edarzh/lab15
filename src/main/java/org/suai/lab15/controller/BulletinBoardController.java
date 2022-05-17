@@ -104,7 +104,7 @@ public class BulletinBoardController extends HttpServlet {
 		List<Map.Entry<String, String>> bulletinBoard = this.bulletinBoard.get();
 		req.setAttribute("bulletinBoard", bulletinBoard);
 		req.setAttribute("loggedIn", loggedIn);
-		req.getRequestDispatcher("/resources/jsp/index.jsp").forward(req, resp);
+		req.getRequestDispatcher("/index.jsp").forward(req, resp);
 	}
 
 	@Override
