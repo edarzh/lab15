@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
 	<title>Bulletin Board</title>
 </head>
 <body>
 <h1>Bulletin Board</h1>
-<a class="link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
+<a class="link" href="${pageContext.request.contextPath}/resources/jsp/login.jsp">Login</a>
 <c:if test="${loggedIn}">
 	| <a class="link" href="/lab15_war_exploded/bulletin-board/logout">Logout</a> |
 	<a class="link" href="/lab15_war_exploded/bulletin-board/add-bulletin">Add Bulletin</a>

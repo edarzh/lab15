@@ -57,19 +57,19 @@ public class BulletinBoardController extends HttpServlet {
 		switch (uri) {
 			case LOGOUT_URI -> {
 				session.invalidate();
-				req.getRequestDispatcher("/logout.jsp").forward(req, resp);
+				req.getRequestDispatcher("/resources/jsp/logout.jsp").forward(req, resp);
 			}
 			case ADD_BULLETIN_URI -> {
 				if (loggedIn) {
 					bulletinBoard.add(name, ZonedDateTime.now().toString());
 					serveMainPage(req, resp, true);
 				} else {
-					req.getRequestDispatcher("/access-denied.jsp").forward(req, resp);
+					req.getRequestDispatcher("/resources/jsp/access-denied.jsp").forward(req, resp);
 				}
 			}
 			case MAIN_PAGE_URI -> serveMainPage(req, resp, loggedIn);
 
-			default -> req.getRequestDispatcher("/not-found.jsp").forward(req, resp);
+			default -> req.getRequestDispatcher("/resources/jsp/not-found.jsp").forward(req, resp);
 		}
 	}
 
@@ -91,10 +91,10 @@ public class BulletinBoardController extends HttpServlet {
 
 				serveMainPage(req, resp, true);
 			} else {
-				req.getRequestDispatcher("/login.jsp").forward(req, resp);
+				req.getRequestDispatcher("/resources/jsp/login.jsp").forward(req, resp);
 			}
 		} else {
-			req.getRequestDispatcher("/not-found.jsp").forward(req, resp);
+			req.getRequestDispatcher("/resources/jsp/not-found.jsp").forward(req, resp);
 		}
 	}
 
@@ -104,7 +104,7 @@ public class BulletinBoardController extends HttpServlet {
 		List<Map.Entry<String, String>> bulletinBoard = this.bulletinBoard.get();
 		req.setAttribute("bulletinBoard", bulletinBoard);
 		req.setAttribute("loggedIn", loggedIn);
-		req.getRequestDispatcher("/index.jsp").forward(req, resp);
+		req.getRequestDispatcher("/resources/jsp/index.jsp").forward(req, resp);
 	}
 
 	@Override
