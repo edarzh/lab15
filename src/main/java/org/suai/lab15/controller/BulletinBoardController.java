@@ -20,10 +20,10 @@ import java.util.stream.Collectors;
 
 @WebServlet(name = "bulletinBoardServlet", value = "/bulletin-board/*")
 public class BulletinBoardController extends HttpServlet {
-	private static final String MAIN_PAGE_URI = "/lab15_war_exploded/bulletin-board/main-page";
-	private static final String LOGIN_URI = "/lab15_war_exploded/bulletin-board/login";
-	private static final String LOGOUT_URI = "/lab15_war_exploded/bulletin-board/logout";
-	private static final String ADD_BULLETIN_URI = "/lab15_war_exploded/bulletin-board/add-bulletin";
+	private static final String MAIN_PAGE_URI = "/lab15/bulletin-board/main-page";
+	private static final String LOGIN_URI = "/lab15/bulletin-board/login";
+	private static final String LOGOUT_URI = "/lab15/bulletin-board/logout";
+	private static final String ADD_BULLETIN_URI = "/lab15/bulletin-board/add-bulletin";
 
 	private final BulletinBoardRepository bulletinBoard = new BulletinBoardRepository();
 	private final UserRepository users = new UserRepository();
