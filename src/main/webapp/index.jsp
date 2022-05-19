@@ -13,7 +13,6 @@
 	| <a class="link" href="/lab15/board/logout">Logout</a> |
 	<a class="link" href="${pageContext.request.contextPath}/resources/jsp/new-bulletin.jsp">Add Bulletin</a>
 </c:if>
-| <a class="link" href="${pageContext.request.contextPath}/resources/jsp/login.jsp">Change theme</a>
 <c:set var="index" value="${0}"/>
 <c:forEach var="entry" items="${requestScope.bulletinBoard}">
 	<div class="bulletin-out">

@@ -20,7 +20,6 @@ public class BoardController extends HttpServlet {
 	static final String LOGOUT_URI = "/lab15/board/logout";
 	static final String ADD_BULLETIN_URI = "/lab15/board/add-bulletin";
 	static final String REMOVE_BULLETIN_URI = "/lab15/board/remove-bulletin";
-	static final String CHANGE_THEME_URI = "/lab15/board/change-theme";
 
 	private final BulletinBoardRepository bulletinBoard = new BulletinBoardRepository();
 	private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
