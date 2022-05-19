@@ -20,6 +20,7 @@ public class BoardController extends HttpServlet {
 	static final String LOGOUT_URI = "/lab15/board/logout";
 	static final String ADD_BULLETIN_URI = "/lab15/board/add-bulletin";
 	static final String REMOVE_BULLETIN_URI = "/lab15/board/remove-bulletin";
+	static final String CHANGE_THEME_URI = "/lab15/board/change-theme";
 
 	private final BulletinBoardRepository bulletinBoard = new BulletinBoardRepository();
 	private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
@@ -35,8 +36,6 @@ public class BoardController extends HttpServlet {
 			case LOGOUT_URI -> {
 				session.invalidate();
 				serveMainPage(req, resp, false);
-			}
-			case REMOVE_BULLETIN_URI -> {
 			}
 			case MAIN_PAGE_URI -> serveMainPage(req, resp, loggedIn);
 
@@ -63,6 +62,14 @@ public class BoardController extends HttpServlet {
 				} else {
 					req.getRequestDispatcher("/resources/jsp/access-denied.jsp").forward(req, resp);
 				}
+			}
+			case REMOVE_BULLETIN_URI -> {
+				String index = req.getParameter("index");
+				if (index != null) {
+					int i = Integer.parseInt(index);
+					bulletinBoard.remove(i);
+				}
+				serveMainPage(req, resp, loggedIn);
 			}
 		}
 	}

@@ -13,6 +13,8 @@
 	| <a class="link" href="/lab15/board/logout">Logout</a> |
 	<a class="link" href="${pageContext.request.contextPath}/resources/jsp/new-bulletin.jsp">Add Bulletin</a>
 </c:if>
+| <a class="link" href="${pageContext.request.contextPath}/resources/jsp/login.jsp">Change theme</a>
+<c:set var="index" value="${0}"/>
 <c:forEach var="entry" items="${requestScope.bulletinBoard}">
 	<div class="bulletin-out">
 		<div class="bulletin">
@@ -22,11 +24,15 @@
 			<article class="bulletin-body">${entry.value}</article>
 			<c:if test="${loggedIn}">
 				<c:if test="${name == entry.key[0]}">
-					<a class="small link" href="/lab15/board/remove-bulletin">Remove</a>
+					<form action="/lab15/board/remove-bulletin" method="post">
+						<input type="hidden" name="index" value="${index}">
+						<input class="small" type="submit" value="Remove">
+					</form>
 				</c:if>
 			</c:if>
 		</div>
 	</div>
+	<c:set var="index" value="${index + 1}"/>
 </c:forEach>
 </body>
 </html>

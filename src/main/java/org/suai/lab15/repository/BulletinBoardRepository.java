@@ -12,6 +12,10 @@ public class BulletinBoardRepository {
 		bulletinBoard.add(new AbstractMap.SimpleImmutableEntry<>(header, text));
 	}
 
+	public void remove(int index) {
+		bulletinBoard.remove(index);
+	}
+
 	public List<Map.Entry<String[], String>> get() {
 		return bulletinBoard;
 	}
