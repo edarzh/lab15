@@ -5,7 +5,7 @@
 	<title>Login</title>
 </head>
 <body>
-<form action="/lab15/bulletin-board/login" method="POST">
+<form action="/lab15/auth" method="POST">
 	Name:<label>
 	<input type="text" name="name">
 </label><br>
@@ -15,6 +15,6 @@
 	<input type="submit" value="login">
 </form>
 <br/>
-<a class="link" href="/lab15/bulletin-board/main-page">Main page</a>
+<a class="link" href="/lab15/board/main-page">Main page</a>
 </body>
 </html>

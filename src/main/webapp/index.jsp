@@ -10,14 +10,14 @@
 <h1>Bulletin Board</h1>
 <a class="link" href="${pageContext.request.contextPath}/resources/jsp/login.jsp">Login</a>
 <c:if test="${loggedIn}">
-	| <a class="link" href="/lab15/bulletin-board/logout">Logout</a> |
-	<a class="link" href="/lab15/bulletin-board/add-bulletin">Add Bulletin</a>
+	| <a class="link" href="/lab15/board/logout">Logout</a> |
+	<a class="link" href="/lab15/board/add-bulletin">Add Bulletin</a>
 </c:if>
 <c:forEach var="entry" items="${requestScope.bulletinBoard}">
 	<div class="bulletin-out">
 		<div class="bulletin">
-			<p class="bulletin-header">${entry.key}</p>
-			<p class="bulletin-body">${entry.value}</p>
+			<cite class="bulletin-header">${entry.key}, ${entry.value}</cite>
+			<article class="bulletin-body">${entry.value}</article>
 		</div>
 	</div>
 </c:forEach>

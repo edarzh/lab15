@@ -5,6 +5,6 @@
 </head>
 <body>
 <h1>Page not found</h1>
-<a href="/lab15/bulletin-board/main-page">Main page</a>
+<a href="/lab15/board/main-page">Main page</a>
 </body>
 </html>
