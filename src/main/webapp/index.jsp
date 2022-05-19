@@ -11,13 +11,20 @@
 <a class="link" href="${pageContext.request.contextPath}/resources/jsp/login.jsp">Login</a>
 <c:if test="${loggedIn}">
 	| <a class="link" href="/lab15/board/logout">Logout</a> |
-	<a class="link" href="/lab15/board/add-bulletin">Add Bulletin</a>
+	<a class="link" href="${pageContext.request.contextPath}/resources/jsp/new-bulletin.jsp">Add Bulletin</a>
 </c:if>
 <c:forEach var="entry" items="${requestScope.bulletinBoard}">
 	<div class="bulletin-out">
 		<div class="bulletin">
-			<cite class="bulletin-header">${entry.key}, ${entry.value}</cite>
+			<c:forEach var="bulletinHeader" items="${entry.key}">
+				<cite class="bulletin-header">${bulletinHeader}</cite>
+			</c:forEach>
 			<article class="bulletin-body">${entry.value}</article>
+			<c:if test="${loggedIn}">
+				<c:if test="${name == entry.key[0]}">
+					<a class="small link" href="/lab15/board/remove-bulletin">Remove</a>
+				</c:if>
+			</c:if>
 		</div>
 	</div>
 </c:forEach>

@@ -8,11 +8,12 @@
 <form action="/lab15/auth" method="POST">
 	Name:<label>
 	<input type="text" name="name">
-</label><br>
+</label>
+	<br>
 	Password:<label>
 	<input type="password" name="password">
 </label><br>
-	<input type="submit" value="login">
+	<input type="submit" value="Login">
 </form>
 <br/>
 <a class="link" href="/lab15/board/main-page">Main page</a>
