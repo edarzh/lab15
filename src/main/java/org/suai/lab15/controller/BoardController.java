@@ -22,10 +22,12 @@ public class BoardController extends HttpServlet {
     static final String REMOVE_BULLETIN_URI = "/lab15/board/remove-bulletin";
 
     private final BulletinBoardRepository bulletinBoard = new BulletinBoardRepository();
-    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(
+            "dd/MM/yyyy HH:mm");
 
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doGet(HttpServletRequest req,
+                      HttpServletResponse resp) throws ServletException, IOException {
         String uri = req.getRequestURI();
         HttpSession session = req.getSession();
         String name = (String) session.getAttribute("name");
@@ -43,7 +45,8 @@ public class BoardController extends HttpServlet {
     }
 
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req,
+                       HttpServletResponse resp) throws ServletException, IOException {
         String uri = req.getRequestURI();
         HttpSession session = req.getSession();
         String name = (String) session.getAttribute("name");
@@ -73,7 +76,9 @@ public class BoardController extends HttpServlet {
         }
     }
 
-    private void serveMainPage(HttpServletRequest req, HttpServletResponse resp, boolean loggedIn) throws ServletException, IOException {
+    private void serveMainPage(HttpServletRequest req,
+                               HttpServletResponse resp,
+                               boolean loggedIn) throws ServletException, IOException {
         List<Map.Entry<String[], String>> bulletinBoard = this.bulletinBoard.get();
         req.setAttribute("bulletinBoard", bulletinBoard);
         req.setAttribute("loggedIn", loggedIn);

@@ -25,7 +25,9 @@ public class AuthServlet extends HttpServlet {
         String usersFile = "/home/nt/Projects/IdeaProjects/lab15/src/main/resources/users.json";
 
         try (BufferedReader in = new BufferedReader(new FileReader(usersFile))) {
-            String content = in.lines().collect(Collectors.joining()).replaceAll("[{}\":,\\[\\]]", "");
+            String content = in.lines()
+                               .collect(Collectors.joining())
+                               .replaceAll("[{}\":,\\[\\]]", "");
             StringTokenizer tokenizer = new StringTokenizer(content);
 
             while (tokenizer.hasMoreTokens()) {
@@ -40,7 +42,8 @@ public class AuthServlet extends HttpServlet {
     }
 
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req,
+                       HttpServletResponse resp) throws ServletException, IOException {
         String uri = req.getRequestURI();
 
         if (LOGIN_URI.equals(uri)) {
