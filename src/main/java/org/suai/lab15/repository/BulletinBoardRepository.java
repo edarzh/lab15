@@ -6,17 +6,17 @@ import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class BulletinBoardRepository {
-	private final List<Map.Entry<String[], String>> bulletinBoard = new CopyOnWriteArrayList<>();
+    private final List<Map.Entry<String[], String>> bulletinBoard = new CopyOnWriteArrayList<>();
 
-	public void add(String[] header, String text) {
-		bulletinBoard.add(new AbstractMap.SimpleImmutableEntry<>(header, text));
-	}
+    public void add(String[] header, String text) {
+        bulletinBoard.add(new AbstractMap.SimpleImmutableEntry<>(header, text));
+    }
 
-	public void remove(int index) {
-		bulletinBoard.remove(index);
-	}
+    public void remove(int index) {
+        bulletinBoard.remove(index);
+    }
 
-	public List<Map.Entry<String[], String>> get() {
-		return bulletinBoard;
-	}
+    public List<Map.Entry<String[], String>> get() {
+        return bulletinBoard;
+    }
 }

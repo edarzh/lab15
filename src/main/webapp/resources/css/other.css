@@ -1,26 +1,26 @@
 .bulletin {
-	align-content: start;
-	background-color: aquamarine;
-	border: 4px solid darkblue;
-	padding: 7px;
+    align-content: center;
+    background-color: antiquewhite;
+    border: 2px solid darksalmon;
+    padding: 5px;
 }
 
 .bulletin-out {
-	padding: 8px;
+    padding: 3px;
 }
 
 .bulletin-header {
-	font-size: x-small;
+    font-size: small;
 }
 
 .bulletin-body {
-	color: green;
+    color: brown;
 }
 
 .link {
-	font-family: Arial, SansSerif;
+    font-family: Arial, serif;
 }
 
 .small {
-	font-size: xx-small;
+    font-size: xx-small;
 }
